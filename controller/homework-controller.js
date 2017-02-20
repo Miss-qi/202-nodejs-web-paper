@@ -17,7 +17,7 @@ class HomeworkController {
       if (err) {
         return next(err);
       }
-      return res.status(constant.OK).send(result);
+      return res.status(constant.httpCode.OK).send(result);
     });
   }
 
@@ -28,9 +28,9 @@ class HomeworkController {
         return next(err);
       }
       if (!doc) {
-        return res.sendStatus(constant.NOT_FOUND);
+        return res.sendStatus(constant.httpCode.NOT_FOUND);
       }
-      return res.status(constant.OK).send(doc);
+      return res.status(constant.httpCode.OK).send(doc);
     });
   }
 
@@ -40,7 +40,7 @@ class HomeworkController {
       if (err) {
         return next(err);
       }
-      return res.status(constant.CREATED).send({uri: `homeworks/${doc._id}`});
+      return res.status(constant.httpCode.CREATED).send({uri: `homeworks/${doc._id}`});
     });
   }
 
@@ -51,9 +51,9 @@ class HomeworkController {
         return next(err);
       }
       if (!doc) {
-        return res.sendStatus(constant.NOT_FOUND);
+        return res.sendStatus(constant.httpCode.NOT_FOUND);
       }
-      return res.sendStatus(constant.NO_CONTENT);
+      return res.sendStatus(constant.httpCode.NO_CONTENT);
     });
   }
 
@@ -78,15 +78,15 @@ class HomeworkController {
       }
     ], (err) => {
       if (err === true) {
-        return res.sendStatus(constant.BAD_REQUEST);
+        return res.sendStatus(constant.httpCode.BAD_REQUEST);
       }
       if (err === false) {
-        return res.sendStatus(constant.NOT_FOUND);
+        return res.sendStatus(constant.httpCode.NOT_FOUND);
       }
       if (err) {
         return next(err);
       }
-      return res.sendStatus(constant.NO_CONTENT);
+      return res.sendStatus(constant.httpCode.NO_CONTENT);
     });
   }
 }
