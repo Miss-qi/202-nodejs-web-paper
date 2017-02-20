@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import HomeworkController from '../../controller/homework-controll';
+import HomeworkController from '../../controller/homework-controller';
 
 
 const router = Router();
