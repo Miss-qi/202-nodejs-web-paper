@@ -36,7 +36,6 @@ class HomeworkController {
 
   create(req, res, next) {
     Homework.create(req.body, (err, doc) => {
-      console.log(req.body)
       if (err) {
         return next(err);
       }
