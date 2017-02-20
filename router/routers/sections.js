@@ -1,5 +1,5 @@
-import {Router} from 'express';
-import SectionController from '../../controller/section-controller';
+const {Router} = require('express');
+const SectionController = require('../../controller/section-controller');
 
 
 const router = Router();

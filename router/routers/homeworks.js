@@ -1,5 +1,5 @@
-import {Router} from 'express';
-import HomeworkController from '../../controller/homework-controller';
+const {Router} = require('express');
+const HomeworkController = require('../../controller/homework-controller');
 
 
 const router = Router();

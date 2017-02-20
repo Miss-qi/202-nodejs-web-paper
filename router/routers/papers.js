@@ -1,5 +1,5 @@
-import {Router} from 'express';
-import PaperController from '../../controller/paper-controller';
+const {Router} = require('express');
+const PaperController = require('../../controller/paper-controller');
 
 
 const router = Router();
