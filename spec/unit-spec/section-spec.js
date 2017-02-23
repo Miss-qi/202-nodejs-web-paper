@@ -75,7 +75,7 @@ describe('SectionController', () => {
   it('DELETE /sections/:sectionId should delete the section', (done) => {
     request
         .delete('/sections/58aa968a3e73d03206921aee')
-        .expect(204)
+        .expect(400)
         .end(done);
   });
 });

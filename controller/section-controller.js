@@ -1,6 +1,7 @@
 const async = require('async');
 
 const Section = require('../model/section');
+const Paper = require('../model/paper');
 const constant = require('../config/constant');
 
 const mapItemToUri = (items) => {
@@ -76,12 +77,31 @@ class SectionController {
 
   delete(req, res, next) {
     const sectionId = req.params.sectionId;
-    Section.findByIdAndRemove(sectionId, (err, doc) => {
+    async.waterfall([
+      (done) => {
+        Paper.findOne({sections: sectionId}, done);
+      },
+      (doc, done) => {
+        if (doc) {
+          done(true, null);
+        } else {
+          Section.findByIdAndRemove(sectionId, (err, doc) => {
+            if (!doc) {
+              done(false, null);
+            }
+            done(err, doc);
+          });
+        }
+      }
+    ], (err) => {
+      if (err === true) {
+        return res.sendStatus(constant.httpCode.BAD_REQUEST);
+      }
+      if (err === false) {
+        return res.sendStatus(constant.httpCode.NOT_FOUND);
+      }
       if (err) {
         return next(err);
-      }
-      if (!doc) {
-        return res.sendStatus(constant.httpCode.NOT_FOUND);
       }
       return res.sendStatus(constant.httpCode.NO_CONTENT);
     });
